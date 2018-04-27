@@ -31,11 +31,12 @@ def main():
     parser = ArgumentParser(description="Sorts Excel Sheets")
     parser.add_argument("-dc", "--datacolumns", help="Amount of data columns", action="store", required=True, type=int)
     parser.add_argument("-c", "--columns", help="Amount of columns to sort", action="store", required=True, type=int)
+    parser.add_argument("-f", "--file", help="Input file" action="store", required=True)
 
     args = parser.parse_args()
 
     columns = args.columns
-    wb = load_workbook("test2.xlsx")
+    wb = load_workbook(args.file)
     out = Workbook()
     out.remove(out.active)
     get_sheet_to_table(wb, out, columns, args.datacolumns)
